@@ -1,41 +1,53 @@
+// frontend/src/store.js
 import { createStore } from 'vuex';
 
-const store = createStore({
+export default createStore({
   state: {
-    products: [], // Initial empty array, you can replace it with your data
+    products: [],          // Список всех продуктов
+    featuredProducts: [],  // Популярные продукты (выделенные)
+    cart: [],              // Корзина покупок
   },
   mutations: {
     setProducts(state, products) {
       state.products = products;
     },
-    addProduct(state, product) {
-      state.products.push(product);
+    setFeaturedProducts(state, featuredProducts) {
+      state.featuredProducts = featuredProducts;
     },
-    // Add more mutations as needed
+    addToCart(state, product) {
+      state.cart.push(product);
+    },
+    removeFromCart(state, productId) {
+      state.cart = state.cart.filter(item => item.id !== productId);
+    },
+    clearCart(state) {
+      state.cart = [];
+    },
   },
   actions: {
     fetchProducts({ commit }) {
-      // Replace this with your actual API call to fetch products
-      const fakeApiData = [
-        { id: 1, name: 'Product 1', price: 50 },
-        { id: 2, name: 'Product 2', price: 75 },
-        // Add more products as needed
-      ];
-      commit('setProducts', fakeApiData);
+      // Логика получения данных о продуктах с сервера
+      const products = []; // Замените на фактический вызов API
+      commit('setProducts', products);
     },
-    addNewProduct({ commit }, product) {
-      // Replace this with your actual API call to add a new product
-      // After adding the product, commit 'addProduct' mutation
-      commit('addProduct', product);
+    fetchFeaturedProducts({ commit }) {
+      // Логика получения данных о популярных продуктах с сервера
+      const featuredProducts = []; // Замените на фактический вызов API
+      commit('setFeaturedProducts', featuredProducts);
     },
-    // Add more actions as needed
+    addToCart({ commit }, product) {
+      commit('addToCart', product);
+    },
+    removeFromCart({ commit }, productId) {
+      commit('removeFromCart', productId);
+    },
+    clearCart({ commit }) {
+      commit('clearCart');
+    },
   },
   getters: {
-    getProductById: (state) => (id) => {
-      return state.products.find((product) => product.id === id);
-    },
-    // Add more getters as needed
+    products: state => state.products,
+    featuredProducts: state => state.featuredProducts,
+    cart: state => state.cart,
   },
 });
-
-export default store;
