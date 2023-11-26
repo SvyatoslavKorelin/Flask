@@ -2,9 +2,9 @@
 
 <template>
   <div id="app">
-    <Header />
+    <AppHeader />
     <router-view />
-    <Footer />
+    <AppFooter />
   </div>
 </template>
 
@@ -15,8 +15,8 @@ import AppFooter from "@/components/Footer";
 export default {
   name: 'App',
   components: {
-    Header,
-    Footer
+    AppHeader,  // Используем правильные имена
+    AppFooter  // Используем правильные имена
   },
   data() {
     return {
