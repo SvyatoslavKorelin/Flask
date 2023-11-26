@@ -34,3 +34,4 @@ export default {
 
 <style scoped>
 @import './assets/styles/main.css';
+</style>

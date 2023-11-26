@@ -11,30 +11,7 @@
   
   <script>
   export default {
-    name: 'Header'
+    name: 'AppHeader'
   };
   </script>
-  
-  <style scoped>
-  header {
-    background-color: #333;
-    padding: 10px 0;
-    text-align: center;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  router-link {
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-  }
-  
-  router-link:hover {
-    background-color: #555;
-  }
-  </style>
   
