@@ -14,7 +14,7 @@
   import ProductList from "@/components/ProductList";  // Убедитесь, что путь верный
   
   export default {
-    name: "Home",
+    name: "AppHome",
     components: {
       ProductList
     },

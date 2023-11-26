@@ -18,7 +18,7 @@
   
   <script>
   export default {
-    name: 'Product',
+    name: 'AppProduct',
     data() {
       return {
         product: null

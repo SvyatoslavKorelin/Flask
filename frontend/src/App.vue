@@ -15,8 +15,8 @@ import AppFooter from "@/components/Footer";
 export default {
   name: 'App',
   components: {
-    AppHeader,  // Используем правильные имена
-    AppFooter  // Используем правильные имена
+    AppHeader,
+    AppFooter
   },
   data() {
     return {
