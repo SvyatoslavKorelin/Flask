@@ -4,19 +4,19 @@
   <div class="product-list">
     <h2>Наша Продукция</h2>
     <div class="products">
-      <ProductCard v-for="product in products" :key="product.id" :product="product" />
+      <AppProductCard v-for="product in products" :key="product.id" :product="product" />
     </div>
   </div>
 </template>
 
 <script>
-// import ProductCard from "@/components/ProductCard";
+import AppProductCard from "@/components/AppProductCard";
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'ProductList',
   components: {
-    // ProductCard,
+    AppProductCard,
   },
   computed: {
     ...mapGetters(['products']),

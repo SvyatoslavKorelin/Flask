@@ -10,7 +10,7 @@
     <div class="featured-products">
       <h2>Популярные товары</h2>
       <div class="products">
-        <ProductCard
+        <AppProductCard
           v-for="product in featuredProducts"
           :key="product.id"
           :product="product"
@@ -21,13 +21,13 @@
 </template>
 
 <script>
-// import ProductCard from "@/components/ProductCard";
+import AppProductCard from "@/components/AppProductCard";
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'AppHome',
   components: {
-    // ProductCard,
+    AppProductCard,
   },
   computed: {
     ...mapGetters(['featuredProducts']),

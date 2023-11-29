@@ -3,10 +3,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 import AppHome from './views/AppHome.vue';
 import AppAbout from './views/AppAbout.vue';
 import AppProductList from './components/AppProductList.vue';
-// import Contact from './views/Contact.vue';
+import AppContact from './views/AppContact.vue';
 import AppProduct from './views/AppProduct.vue';
-// import Login from './views/Login.vue';
-// import Register from './views/Register.vue';
+import AppLogin from './views/AppLogin.vue';
+import AppRegister from './views/AppRegister.vue';
 
 const routes = [
   {
@@ -24,26 +24,26 @@ const routes = [
     component: AppProductList,
     name: 'ProductList',
   },
-//   {
-//     path: '/contact',
-//     component: Contact,
-//     name: 'Contact',
-//   },
+  {
+    path: '/contact',
+    component: AppContact,
+    name: 'Contact',
+  },
   {
     path: '/product/:id',
     component: AppProduct,
     name: 'Product',
   },
-//   {
-//     path: '/login',
-//     component: Login,
-//     name: 'Login',
-//   },
-//   {
-//     path: '/register',
-//     component: Register,
-//     name: 'Register',
-//   },
+  {
+    path: '/login',
+    component: AppLogin,
+    name: 'Login',
+  },
+ {
+    path: '/register',
+    component: AppRegister,
+    name: 'Register',
+  },
 ];
 
 const router = createRouter({

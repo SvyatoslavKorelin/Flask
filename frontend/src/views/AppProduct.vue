@@ -1,19 +1,17 @@
 <!-- frontend/src/views/Product.vue -->
 
 <template>
-  <div class="product-details">
-    <div class="product-image">
-      <img :src="product.image" :alt="product.name" />
-    </div>
+  <div v-if="product" class="product-details">
+    <img :src="require(`@/assets/images/${product.image}`)" :alt="product.name" class="product-image" />
     <div class="product-info">
       <h1 class="product-title">{{ product.name }}</h1>
       <p class="product-description">{{ product.description }}</p>
       <p class="product-price">{{ formatPrice(product.price) }}</p>
-      <div class="product-actions">
-        <button @click="addToCart" class="cta-button">Добавить в корзину</button>
-        <button @click="buyNow" class="cta-button">Купить сейчас</button>
-      </div>
+      <button @click="addToCart" class="cta-button">Добавить в корзину</button>
     </div>
+  </div>
+  <div v-else>
+    <p>Продукт не найден.</p>
   </div>
 </template>
 
@@ -21,22 +19,30 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
-  name: 'AppProduct',
-  computed: {
-    ...mapGetters(['getProductById']),
-  },
+  name: 'ProductDetails',
   methods: {
-    ...mapActions(['addToCart', 'buyNow']),
+    ...mapActions(['addToCart']),
+    ...mapActions(['fetchProducts']),
     formatPrice(price) {
       // Логика форматирования цены, например, добавление символа валюты
       return `₽${price}`;
     },
   },
+  data() {
+    return {
+      productId: null,
+    };
+  },
   created() {
-    // Получаем ID продукта из параметра маршрута
-    const productId = this.$route.params.id;
-    // Вызываем действие для получения информации о продукте по ID
-    this.fetchProductById(productId);
+    this.productId = this.$route.params.id;
+    // Вызываем метод для загрузки продуктов
+    this.fetchProducts();
+  },
+  computed: {
+    ...mapGetters(['getProductById']),
+    product() {
+      return this.getProductById(this.productId);
+    },
   },
 };
 </script>
@@ -48,16 +54,12 @@ export default {
 }
 
 .product-image {
-  flex: 1;
-}
-
-.product-image img {
-  max-width: 100%;
+  width: 300px;
   height: auto;
+  border-radius: 8px;
 }
 
 .product-info {
-  flex: 1;
   margin-left: 40px;
 }
 
@@ -77,11 +79,6 @@ export default {
   font-size: 24px;
   margin-bottom: 20px;
   color: #333;
-}
-
-.product-actions {
-  display: flex;
-  gap: 20px;
 }
 
 .cta-button {
